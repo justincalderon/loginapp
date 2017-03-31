@@ -1,15 +1,15 @@
-var existingUsers = [
+var objPeople = [
   {
-    user: "justincalderon",
-    pass: "password1"
+    username: "justincalderon",
+    password: "password1"
   },
   {
-    user: "aerielharina",
-    pass: "password2"
+    username: "aerielharina",
+    password: "password2"
   },
   {
-    user: "jayceeharina",
-    pass: "password3"
+    username: "jayceeharina",
+    password: "password3"
   }
 ]
 
@@ -26,11 +26,11 @@ function login() {
   console.log("your password is " + password.value)
 
 
-  for (i = 0; i < existingUsers.length; i = i + 1) {
+  for (i = 0; i < objPeople.length; i = i + 1) {
 
-    console.log(existingUsers[i])
+    console.log(objPeople[i])
 
-    if (username.value === existingUsers[i].user && password.value === existingUsers[i].pass) {
+    if (username.value === objPeople[i].username && password.value === objPeople[i].password) {
       console.log("if statement ran, so we have a match!")
       results.className = "success"
 
@@ -45,4 +45,28 @@ function login() {
   results.className = "failure"
 
   results.textContent = "Invalid username or password !"
+}
+
+function registerUser() {
+
+  var registerUser = document.getElementById("newUser").value
+
+  var registerPassword = document.getElementById("newPassword").value
+
+  var newUser = {
+    username: registerUser,
+    password: registerPassword
+  }
+
+  for (var i = 0; i < objPeople.length; i++) {
+    if (registerUser == objPeople[i].username) {
+      alert("Username is already in use, please choose another username.")
+      return
+    } else if (registerPassword.length < 8 ) {
+    alert("Password required 8 or more characters")
+    return
+    }
+}
+  objPeople.push(newUser)
+  console.log(objPeople);
 }
